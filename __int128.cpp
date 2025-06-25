@@ -20,6 +20,3 @@ void print(__int128 x) {
     if (x > 9) print(x / 10);
     putchar(x % 10 + '0');
 }
-
-
-(a + b - 1) / b
