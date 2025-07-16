@@ -3,9 +3,10 @@ struct sparse_table
     vector<vector<int>> table;
     vector<int> log_table, a;
     int n;
-
+ 
     void build()
     {
+        int maxLog = floor(log2(n)) + 1;
         int current_log = 0;
         for (int i = 0; i < n; i++)
         {
@@ -14,7 +15,7 @@ struct sparse_table
                 current_log++;
             log_table[i + 1] = current_log;
         }
-        for (int j = 1; j < 20; j++)
+        for (int j = 1; j < maxLog; j++)
         {
             for (int i = 0; i + (1 << j) - 1 < n; i++)
             {
@@ -22,19 +23,21 @@ struct sparse_table
             }
         }
     }
-
+ 
     int query(int L, int R)
     {
         int k = log_table[R - L + 1];
         return min(table[L][k], table[R - (1 << k) + 1][k]);
     }
-
+ 
     sparse_table(int n, vector<int> &a)
     {
-        table = vector<vector<int>>(n, vector<int>(20));
+        int maxLog = floor(log2(n)) + 1;
+        table = vector<vector<int>>(n, vector<int>(maxLog));
         log_table.resize(n + 5);
         this->a = a;
         this->n = n;
         build();
     }
 };
+ 
