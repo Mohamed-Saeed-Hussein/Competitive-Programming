@@ -14,39 +14,6 @@ int64_t lcm(int64_t a, int64_t b) {
     return (a * b / gcd(a, b));
 }
 
-// Fast Power
-int64_t fast_power(int64_t a, int64_t b) {
-    if (b == 0) {
-        return 1;
-    }
-    if (b == 1) {
-        return a;
-    }
-    int64_t ret = 1;
-    if (b & 1) {
-        ret = a;
-    }
-    int64_t x = fast_power(a, b / 2);
-    return ret * x * x;
-}
-
-// Fast Power Mod
-int64_t fast_power_mod(int64_t a, int64_t b, int64_t mod) {
-    if (b == 0) {
-        return 1;
-    }
-    if (b == 1) {
-        return a % mod;
-    }
-    int64_t ret = 1;
-    if (b & 1) {
-        ret = a % mod;
-    }
-    int64_t x = fast_power_mod(a, b / 2, mod);
-    ret = ret * x * x;
-    return ret % mod;
-}
-
 // Sieve of Eratosthenes
 const int inf = 1e6;
 bool prime[inf];
@@ -262,5 +229,4 @@ void primes() {
             }
         }
     }
-
 }
