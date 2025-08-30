@@ -15,10 +15,10 @@ vector<int> prefix_function(const string &s) {
 
 vector<int> KMP(string pattern, string s) {
   int k = 0;
-  vector<int> pref = prefix_function(pattern), ret;
+  vector<int> prefix = prefix_function(pattern), ret;
   for (int i = 0; i < s.size(); ++i) {
     while (k > 0 and s[i] != pattern[k]) {
-      k = pref[k - 1];
+      k = prefix[k - 1];
     }
 
     if (s[i] == pattern[k]) {
@@ -27,8 +27,9 @@ vector<int> KMP(string pattern, string s) {
 
     if (k == pattern.size()) {
       ret.push_back(i - k + 1);
-      k = pref[k - 1];
+      k = prefix[k - 1];
     }
   }
   return ret;
 }
+
