@@ -1,55 +1,68 @@
-# Competitive-Programming
+# Competitive Programming Repository
 
-A personal repository of competitive programming templates and solved problems organized by topic. This collection contains clean, well-commented C++ snippets and utility implementations I use for contests and practice.
+![Language](https://img.shields.io/badge/Language-C++17-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## Contents
+Welcome to my personal repository for competitive programming. This collection serves as a comprehensive library of algorithms, data structures, and utility templates that I utilize for contests and practice. The code is written in C++17, focusing on performance, readability, and ease of integration.
 
-- Bitwise/: common bitmask and bit-manipulation snippets.
-- Data Structure/: implementations for DSU, Fenwick tree, segment tree, Mo's algorithm, mex, sparse table, etc.
-- Math and Number Theory/: combinatorics, FFT, modular arithmetic, matrix exponentiation, number theory helpers.
-- Strings/: string algorithms such as KMP, Z-function, Aho–Corasick, rolling hash, Trie.
-- Templates/: contest template files and useful utilities (policy-based data structures, fast IO snippets).
+## 📂 Contents
 
-## How to use
+The repository is organized by topic to facilitate quick access during contests:
 
-Each file is a standalone C++ source you can compile and run. For a single-file compile with g++ (recommended for contests):
+- **Bitwise/**: Efficient bit manipulation techniques and bitmask snippets.
+- **Data Structure/**: Implementations of essential data structures including:
+    - Disjoint Set Union (DSU)
+    - Fenwick Tree (Binary Indexed Tree)
+    - Segment Tree & Persistent Segment Tree
+    - Mo's Algorithm
+    - Sparse Table
+    - MEX (Minimum Excluded) utilities
+- **Math and Number Theory/**: A robust collection of mathematical algorithms:
+    - Combinatorics & Matrix Exponentiation
+    - Fast Fourier Transform (FFT)
+    - Modular Arithmetic & Number Theory helpers
+    - Big Integer support (`__int128`)
+- **Strings/**: Advanced string processing algorithms:
+    - KMP Algorithm
+    - Z-Function
+    - Aho–Corasick
+    - Rolling Hash
+    - Trie
+- **Templates/**: Ready-to-use contest templates, fast I/O snippets, and policy-based data structures.
+
+## 🚀 Getting Started
+
+Each file is designed to be a standalone C++ source file, making it easy to copy and paste into your solution.
+
+### Compilation
+
+To compile a single file using `g++` (recommended for contests), use the following command:
 
 ```powershell
 g++ -std=c++17 -O2 -Wall -Wextra -pipe -static -s path\to\file.cpp -o file.exe
-.
-\# then run:
 .\file.exe
 ```
 
-Notes:
+**Notes:**
+- Remove `-static` if you encounter linking issues on your platform.
+- Omit `-s` during local development to retain debug symbols.
 
-- Remove `-static` on platforms where static linking causes issues (Windows/msys/mingw may need different flags).
-- For local testing, you can omit `-s` to keep debug symbols.
+## 🤝 Contributing
 
-## Conventions
-
-- Filenames are grouped by topic folders. Each file typically contains a single algorithm or data structure with a minimal main() for quick testing.
-- Prefer small, well-documented functions and self-contained examples that are easy to copy into contest solutions.
-
-## Contributing
-
-If you want to contribute:
+Contributions are welcome! If you have an optimization or a new algorithm to add:
 
 1. Fork the repository.
-2. Add or improve an algorithm in the matching directory.
-3. Keep files short and focused; include a short comment describing complexity.
-4. Open a pull request explaining the change.
+2. Create a new branch for your feature.
+3. Commit your changes with clear messages.
+4. Open a pull request describing your addition.
 
-## License
+Please ensure your code is well-commented and follows the existing style.
 
-This repo has no explicit license file. If you want to reuse code from here, ask the owner or add a license via PR.
+## 📬 Contact
+
+If you have any questions, suggestions, or notice any issues, please feel free to reach out:
+
+- **Email**: [msaidg54@gmail.com](mailto:msaidg54@gmail.com)
 
 ---
-
-If you'd like, I can also:
-
-- add a CONTRIBUTING.md and LICENSE file,
-- create a small script to compile and run a chosen file,
-- or group files by difficulty/tags in the README.
-
-Tell me which you'd prefer and I can add it.
+*Happy Coding!*
