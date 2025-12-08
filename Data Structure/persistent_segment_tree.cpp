@@ -1,18 +1,23 @@
-class segment_tree {
+class segment_tree
+{
 private:
     int size_of_segment = 1;
-    struct node {
+    struct node
+    {
         int64_t _max = LLONG_MIN;
         int64_t count = 0;
     };
     vector<node> tree;
     vector<int64_t> lazy;
 
-    node merge(node left, node right) {
-        if (left._max > right._max) {
+    node merge(node left, node right)
+    {
+        if (left._max > right._max)
+        {
             return left;
         }
-        if (left._max < right._max) {
+        if (left._max < right._max)
+        {
             return right;
         }
         node ret;
@@ -21,8 +26,10 @@ private:
         return ret;
     }
 
-    void build(int _node, int low, int high) {
-        if (low == high) {
+    void build(int _node, int low, int high)
+    {
+        if (low == high)
+        {
             tree[_node]._max = 0;
             tree[_node].count = 1;
             return;
@@ -35,10 +42,13 @@ private:
         tree[_node] = merge(tree[left_child], tree[right_child]);
     }
 
-    void propagate(int _node, int low, int high) {
-        if (lazy[_node] != 0) {
+    void propagate(int _node, int low, int high)
+    {
+        if (lazy[_node] != 0)
+        {
             tree[_node]._max += lazy[_node];
-            if (low != high) {
+            if (low != high)
+            {
                 lazy[2 * _node + 1] += lazy[_node];
                 lazy[2 * _node + 2] += lazy[_node];
             }
@@ -46,10 +56,13 @@ private:
         }
     }
 
-    void update_range(int _node, int low, int high, int l, int r, int64_t value) {
+    void update_range(int _node, int low, int high, int l, int r, int64_t value)
+    {
         propagate(_node, low, high);
-        if (low > r or high < l) return;
-        if (l <= low and high <= r) {
+        if (low > r or high < l)
+            return;
+        if (l <= low and high <= r)
+        {
             lazy[_node] += value;
             propagate(_node, low, high);
             return;
@@ -62,12 +75,15 @@ private:
         tree[_node] = merge(tree[left_child], tree[right_child]);
     }
 
-    node query(int _node, int low, int high, int l, int r) {
+    node query(int _node, int low, int high, int l, int r)
+    {
         propagate(_node, low, high);
-        if (low > r or high < l) {
+        if (low > r or high < l)
+        {
             return node();
         }
-        if (l <= low and high <= r) {
+        if (l <= low and high <= r)
+        {
             return tree[_node];
         }
         int mid = (low + high) / 2;
@@ -79,8 +95,10 @@ private:
     }
 
 public:
-    segment_tree(int n) {
-        while (size_of_segment < n) {
+    segment_tree(int n)
+    {
+        while (size_of_segment < n)
+        {
             size_of_segment *= 2;
         }
         tree.assign(2 * size_of_segment, node());
@@ -88,29 +106,34 @@ public:
         build(0, 0, size_of_segment - 1);
     }
 
-    void update_range(int l, int r, int64_t value) {
+    void update_range(int l, int r, int64_t value)
+    {
         update_range(0, 0, size_of_segment - 1, l, r, value);
     }
 
-    pair<int64_t, int64_t> get_max_count(int l, int r) {
+    pair<int64_t, int64_t> get_max_count(int l, int r)
+    {
         node res = query(0, 0, size_of_segment - 1, l, r);
         return {res._max, res.count};
     }
-
 };
 
-class persistent_segment_tree {
+class persistent_segment_tree
+{
 private:
     int size_of_segment = 1;
-    struct node {
+    struct node
+    {
         int64_t sum = 0;
     };
     vector<node> tree;
     vector<int64_t> lazy;
     segment_tree *st;
 
-    void build(int _node, int low, int high) {
-        if (low == high) {
+    void build(int _node, int low, int high)
+    {
+        if (low == high)
+        {
             tree[_node].sum = 0;
             return;
         }
@@ -122,10 +145,13 @@ private:
         tree[_node].sum = tree[left_child].sum + tree[right_child].sum;
     }
 
-    void propagate(int _node, int low, int high) {
-        if (lazy[_node] != -1) {
+    void propagate(int _node, int low, int high)
+    {
+        if (lazy[_node] != -1)
+        {
             tree[_node].sum = lazy[_node] * (high - low + 1LL);
-            if (low != high) {
+            if (low != high)
+            {
                 lazy[2 * _node + 1] = lazy[_node];
                 lazy[2 * _node + 2] = lazy[_node];
             }
@@ -133,15 +159,20 @@ private:
         }
     }
 
-    void set_range(int _node, int low, int high, int l, int r, int value) {
+    void set_range(int _node, int low, int high, int l, int r, int value)
+    {
         propagate(_node, low, high);
-        if (low > r or high < l) {
+        if (low > r or high < l)
+        {
             return;
         }
-        if (l <= low and high <= r) {
+        if (l <= low and high <= r)
+        {
             int len = high - low + 1;
-            if (tree[_node].sum == 0 or tree[_node].sum == len) {
-                if ((tree[_node].sum == len ? 1 : 0) != value) {
+            if (tree[_node].sum == 0 or tree[_node].sum == len)
+            {
+                if ((tree[_node].sum == len ? 1 : 0) != value)
+                {
                     st->update_range(low, high, value - (tree[_node].sum == len ? 1 : 0));
                 }
                 lazy[_node] = value;
@@ -158,8 +189,10 @@ private:
     }
 
 public:
-    persistent_segment_tree(int n, segment_tree *_st) : st(_st) {
-        while (size_of_segment < n) {
+    persistent_segment_tree(int n, segment_tree *_st) : st(_st)
+    {
+        while (size_of_segment < n)
+        {
             size_of_segment *= 2;
         }
         tree.assign(2 * size_of_segment, node());
@@ -167,8 +200,8 @@ public:
         build(0, 0, size_of_segment - 1);
     }
 
-    void set_range(int l, int r, int value) {
+    void set_range(int l, int r, int value)
+    {
         set_range(0, 0, size_of_segment - 1, l, r, value);
     }
-
 };
