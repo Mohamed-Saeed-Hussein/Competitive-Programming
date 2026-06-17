@@ -28,27 +28,7 @@ The repository is organized by topic to facilitate quick access during contests:
     - Aho–Corasick
     - Rolling Hash
     - Trie
-- **Templates/**: Ready-to-use contest templates, fast I/O snippets, and policy-based data structures.
-
-## 🚀 Getting Started
-
-Each file is designed to be a standalone C++ source file, making it easy to copy and paste into your solution.
-
-### Compilation
-
-To compile a single file using `g++` (recommended for contests), use the following command:
-
-```powershell
-g++ -std=c++17 -O2 -Wall -Wextra -pipe -static -s path\to\file.cpp -o file.exe
-.\file.exe
-```
-
-**Notes:**
-- Remove `-static` if you encounter linking issues on your platform.
-- Omit `-s` during local development to retain debug symbols.
-
-## 🤝 Contributing
-
+    
 Contributions are welcome! If you have an optimization or a new algorithm to add:
 
 1. Fork the repository.
